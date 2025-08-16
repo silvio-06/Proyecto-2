@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Launcher script for the Elegant Calculator
+Launcher script for the Futuristic Cyber Calculator
 """
 
-from calculator import ElegantCalculator
+from calculator import FuturisticCalculator
 
 def main():
-    print("Iniciando Calculadora Elegante...")
-    calculator = ElegantCalculator()
+    print("🚀 Iniciando Calculadora Cyber Futurista...")
+    print("▼▲▼ QUANTUM COMPUTING DIVISION ▼▲▼")
+    calculator = FuturisticCalculator()
     calculator.run()
 
 if __name__ == "__main__":

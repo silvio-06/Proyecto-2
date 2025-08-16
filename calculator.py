@@ -2,22 +2,26 @@ import tkinter as tk
 from tkinter import ttk
 import math
 
-class ElegantCalculator:
+class FuturisticCalculator:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Calculadora Elegante")
-        self.root.geometry("400x600")
+        self.root.title("🚀 CALCULADORA CYBER 2024 🚀")
+        self.root.geometry("450x700")
         self.root.resizable(False, False)
         
-        # Color scheme - modern dark theme
-        self.bg_color = "#1e1e1e"
-        self.display_bg = "#2d2d2d"
-        self.button_bg = "#3c3c3c"
-        self.button_hover = "#4c4c4c"
-        self.operator_bg = "#ff9500"
-        self.operator_hover = "#ffad33"
-        self.text_color = "#ffffff"
-        self.display_text = "#ffffff"
+        # Futuristic color scheme - cyber neon theme
+        self.bg_color = "#0a0a0a"  # Deep black
+        self.panel_bg = "#1a1a2e"  # Dark blue-purple
+        self.display_bg = "#16213e"  # Darker blue
+        self.button_bg = "#0f3460"  # Dark cyber blue
+        self.button_hover = "#1e5f8c"  # Bright cyber blue
+        self.operator_bg = "#00ffff"  # Neon cyan
+        self.operator_hover = "#00e6e6"  # Bright cyan
+        self.special_bg = "#ff00ff"  # Neon magenta
+        self.special_hover = "#e600e6"  # Bright magenta
+        self.text_color = "#00ffff"  # Neon cyan text
+        self.display_text = "#ffffff"  # White display text
+        self.glow_color = "#00ffff"  # Cyan glow
         
         self.root.configure(bg=self.bg_color)
         
@@ -30,32 +34,70 @@ class ElegantCalculator:
         self.setup_ui()
         
     def setup_ui(self):
-        # Main frame
-        main_frame = tk.Frame(self.root, bg=self.bg_color, padx=20, pady=20)
-        main_frame.pack(fill=tk.BOTH, expand=True)
+        # Main container with cyber border
+        main_container = tk.Frame(self.root, bg=self.bg_color, padx=15, pady=15)
+        main_container.pack(fill=tk.BOTH, expand=True)
         
-        # Display frame
-        display_frame = tk.Frame(main_frame, bg=self.display_bg, height=120, relief=tk.FLAT, bd=2)
-        display_frame.pack(fill=tk.X, pady=(0, 20))
+        # Title with futuristic styling
+        title_frame = tk.Frame(main_container, bg=self.bg_color, height=50)
+        title_frame.pack(fill=tk.X, pady=(0, 15))
+        title_frame.pack_propagate(False)
+        
+        title_label = tk.Label(
+            title_frame,
+            text="◢ CYBER CALC ◤",
+            font=("Orbitron", 20, "bold"),
+            bg=self.bg_color,
+            fg=self.glow_color,
+            pady=10
+        )
+        title_label.pack()
+        
+        # Outer panel with neon border effect
+        outer_panel = tk.Frame(main_container, bg=self.glow_color, padx=3, pady=3)
+        outer_panel.pack(fill=tk.BOTH, expand=True)
+        
+        inner_panel = tk.Frame(outer_panel, bg=self.panel_bg, padx=20, pady=20)
+        inner_panel.pack(fill=tk.BOTH, expand=True)
+        
+        # Display frame with multiple layers for glow effect
+        display_outer = tk.Frame(inner_panel, bg=self.glow_color, padx=2, pady=2)
+        display_outer.pack(fill=tk.X, pady=(0, 25))
+        
+        display_frame = tk.Frame(display_outer, bg=self.display_bg, height=140, relief=tk.FLAT)
+        display_frame.pack(fill=tk.X)
         display_frame.pack_propagate(False)
         
-        # Previous operation display
+        # Status indicator
+        status_frame = tk.Frame(display_frame, bg=self.display_bg, height=20)
+        status_frame.pack(fill=tk.X, padx=15, pady=(10, 0))
+        
+        status_dots = tk.Label(
+            status_frame,
+            text="● ● ● ONLINE ● ● ●",
+            font=("Courier", 8, "bold"),
+            bg=self.display_bg,
+            fg=self.glow_color
+        )
+        status_dots.pack()
+        
+        # Previous operation display with cyber styling
         self.prev_label = tk.Label(
             display_frame, 
             text="", 
-            font=("Segoe UI", 12), 
+            font=("Courier New", 12, "bold"), 
             bg=self.display_bg, 
             fg="#888888",
             anchor="e"
         )
-        self.prev_label.pack(fill=tk.X, padx=15, pady=(15, 5))
+        self.prev_label.pack(fill=tk.X, padx=15, pady=(5, 0))
         
-        # Current display
+        # Current display with futuristic font
         self.display_var = tk.StringVar(value="0")
         self.display = tk.Label(
             display_frame, 
             textvariable=self.display_var, 
-            font=("Segoe UI", 28, "bold"), 
+            font=("Orbitron", 32, "bold"), 
             bg=self.display_bg, 
             fg=self.display_text,
             anchor="e"
@@ -63,73 +105,150 @@ class ElegantCalculator:
         self.display.pack(fill=tk.BOTH, padx=15, pady=(0, 15))
         
         # Buttons frame
-        buttons_frame = tk.Frame(main_frame, bg=self.bg_color)
+        buttons_frame = tk.Frame(inner_panel, bg=self.panel_bg)
         buttons_frame.pack(fill=tk.BOTH, expand=True)
         
         # Button configuration
         button_config = {
-            'font': ('Segoe UI', 16, 'bold'),
+            'font': ('Orbitron', 16, 'bold'),
             'relief': tk.FLAT,
             'bd': 0,
             'cursor': 'hand2',
-            'fg': self.text_color
+            'fg': self.text_color,
+            'activeforeground': '#ffffff'
         }
         
-        # Create buttons
+        # Create buttons with futuristic symbols
         buttons = [
-            ['C', '⌫', '%', '÷'],
+            ['CLR', '⟸', '%', '÷'],
             ['7', '8', '9', '×'],
-            ['4', '5', '6', '-'],
+            ['4', '5', '6', '−'],
             ['1', '2', '3', '+'],
-            ['±', '0', '.', '=']
+            ['±', '0', '•', '=']
         ]
         
         for i, row in enumerate(buttons):
             for j, text in enumerate(row):
-                btn_bg = self.operator_bg if text in ['÷', '×', '-', '+', '='] else self.button_bg
-                btn_hover = self.operator_hover if text in ['÷', '×', '-', '+', '='] else self.button_hover
+                # Determine button style based on type
+                if text in ['÷', '×', '−', '+', '=']:
+                    btn_bg = self.operator_bg
+                    btn_hover = self.operator_hover
+                    text_color = '#000000'  # Black text on bright buttons
+                elif text in ['CLR', '⟸', '%', '±']:
+                    btn_bg = self.special_bg
+                    btn_hover = self.special_hover
+                    text_color = '#000000'  # Black text on bright buttons
+                else:
+                    btn_bg = self.button_bg
+                    btn_hover = self.button_hover
+                    text_color = self.text_color
+                
+                # Create button with border for glow effect
+                btn_frame = tk.Frame(buttons_frame, bg=btn_bg, padx=1, pady=1)
+                btn_frame.grid(row=i, column=j, columnspan=2 if text == '0' else 1, 
+                              sticky="nsew", padx=3, pady=3)
                 
                 btn = tk.Button(
-                    buttons_frame,
+                    btn_frame,
                     text=text,
                     bg=btn_bg,
+                    fg=text_color,
                     activebackground=btn_hover,
+                    activeforeground='#ffffff',
                     command=lambda t=text: self.button_click(t),
-                    **button_config
+                    **{k: v for k, v in button_config.items() if k not in ['fg']}
                 )
+                btn.pack(fill=tk.BOTH, expand=True)
                 
-                # Special width for 0 button
-                colspan = 2 if text == '0' else 1
-                btn.grid(row=i, column=j, columnspan=colspan, sticky="nsew", padx=2, pady=2)
+                # Enhanced hover effects with color transitions
+                def on_enter(e, button=btn, frame=btn_frame, hover_color=btn_hover):
+                    button.configure(bg=hover_color)
+                    frame.configure(bg=hover_color)
+                    
+                def on_leave(e, button=btn, frame=btn_frame, normal_color=btn_bg):
+                    button.configure(bg=normal_color)
+                    frame.configure(bg=normal_color)
                 
-                # Hover effects
-                btn.bind("<Enter>", lambda e, b=btn, color=btn_hover: b.configure(bg=color))
-                btn.bind("<Leave>", lambda e, b=btn, color=btn_bg: b.configure(bg=color))
+                btn.bind("<Enter>", on_enter)
+                btn.bind("<Leave>", on_leave)
+                btn_frame.bind("<Enter>", on_enter)
+                btn_frame.bind("<Leave>", on_leave)
         
-        # Configure grid weights
+        # Configure grid weights for responsive design
         for i in range(5):
             buttons_frame.grid_rowconfigure(i, weight=1)
         for j in range(4):
             buttons_frame.grid_columnconfigure(j, weight=1)
+        
+        # Footer with cyber branding
+        footer_frame = tk.Frame(inner_panel, bg=self.panel_bg, height=30)
+        footer_frame.pack(fill=tk.X, pady=(15, 0))
+        footer_frame.pack_propagate(False)
+        
+        footer_label = tk.Label(
+            footer_frame,
+            text="▼▲▼ QUANTUM COMPUTING DIVISION ▼▲▼",
+            font=("Courier", 8),
+            bg=self.panel_bg,
+            fg="#555555"
+        )
+        footer_label.pack()
             
         # Keyboard bindings
         self.root.bind('<Key>', self.key_press)
         self.root.focus_set()
+        
+        # Add pulsing effect to the display
+        self.pulse_display()
+    
+    def pulse_display(self):
+        """Create a subtle pulsing effect on the display border"""
+        colors = ["#00ffff", "#00e6e6", "#00cccc", "#00e6e6"]
+        current_color = colors[0]
+        
+        def pulse():
+            nonlocal current_color
+            idx = colors.index(current_color)
+            current_color = colors[(idx + 1) % len(colors)]
+            
+            # Find display outer frame and update color
+            for widget in self.root.winfo_children():
+                if isinstance(widget, tk.Frame):
+                    for child in widget.winfo_children():
+                        if isinstance(child, tk.Frame):
+                            for grandchild in child.winfo_children():
+                                if isinstance(grandchild, tk.Frame) and str(grandchild).endswith('!frame2'):
+                                    grandchild.configure(bg=current_color)
+                                    break
+            
+            self.root.after(1500, pulse)  # Pulse every 1.5 seconds
+        
+        self.root.after(1500, pulse)
     
     def button_click(self, value):
-        if value.isdigit() or value == '.':
-            self.input_number(value)
-        elif value in ['÷', '×', '-', '+']:
-            self.input_operator(value)
-        elif value == '=':
+        # Map display symbols to calculation symbols
+        symbol_map = {
+            '•': '.',
+            '−': '-',
+            'CLR': 'C',
+            '⟸': '⌫'
+        }
+        
+        mapped_value = symbol_map.get(value, value)
+        
+        if mapped_value.isdigit() or mapped_value == '.':
+            self.input_number(mapped_value)
+        elif mapped_value in ['÷', '×', '-', '+']:
+            self.input_operator(mapped_value)
+        elif mapped_value == '=':
             self.calculate()
-        elif value == 'C':
+        elif mapped_value == 'C':
             self.clear()
-        elif value == '⌫':
+        elif mapped_value == '⌫':
             self.backspace()
-        elif value == '±':
+        elif mapped_value == '±':
             self.toggle_sign()
-        elif value == '%':
+        elif mapped_value == '%':
             self.percentage()
     
     def input_number(self, num):
@@ -172,7 +291,7 @@ class ElegantCalculator:
                 result = prev_num * current_num
             elif self.operator == '÷':
                 if current_num == 0:
-                    self.current = "Error"
+                    self.current = "ERROR"
                     self.update_display()
                     return
                 result = prev_num / current_num
@@ -190,7 +309,7 @@ class ElegantCalculator:
             self.prev_label.config(text="")
             
         except (ValueError, ZeroDivisionError):
-            self.current = "Error"
+            self.current = "ERROR"
             self.update_display()
     
     def clear(self):
@@ -209,7 +328,7 @@ class ElegantCalculator:
         self.update_display()
     
     def toggle_sign(self):
-        if self.current != "0" and self.current != "Error":
+        if self.current != "0" and self.current != "ERROR":
             if self.current.startswith('-'):
                 self.current = self.current[1:]
             else:
@@ -226,7 +345,7 @@ class ElegantCalculator:
             pass
     
     def update_display(self):
-        # Limit display length
+        # Limit display length and format for futuristic look
         display_text = self.current
         if len(display_text) > 12:
             try:
@@ -239,7 +358,7 @@ class ElegantCalculator:
     
     def update_prev_display(self):
         if self.previous and self.operator:
-            self.prev_label.config(text=f"{self.previous} {self.operator}")
+            self.prev_label.config(text=f">> {self.previous} {self.operator}")
     
     def key_press(self, event):
         key = event.char
@@ -266,5 +385,5 @@ class ElegantCalculator:
         self.root.mainloop()
 
 if __name__ == "__main__":
-    calculator = ElegantCalculator()
+    calculator = FuturisticCalculator()
     calculator.run()
